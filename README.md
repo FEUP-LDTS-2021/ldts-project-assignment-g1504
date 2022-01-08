@@ -24,7 +24,25 @@
 
 --> Possibilidade de mudar a cor da sobra;
 
+## Design
 
+**The Pattern**
+
+**Problema**
+
+No desonvolvimento do nosso projeto, apercebemo-nos que algumas classes continham muitos métodos distintos o que torna o código visualmente pouco apelativo.
+
+**Solução**
+
+Planeamos usar o **"MVC Pattern"**. Este desing pattern consiste em subdividir o código em três grandes partes sendo estas:
+
+1. Model - representa os dados;
+2. View - dá display aos dados presentes em Model;
+3. Controller - reage aos inputs do utilizador;
+
+**Implementation**
+
+(Por ser feito.)
 
 
 
