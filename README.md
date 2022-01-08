@@ -42,7 +42,8 @@ Planeamos usar o **"MVC Pattern"**. Este desing pattern consiste em subdividir o
 **Implementation**
 
 (Por ser feito.)
-"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Problema**
 
 Devido aos diferentes menus bem como estados da cobra, causados pela ingestão de maçãs, que pretendemos implementar, seria necessário uma grande quantidade de variáveis.
