@@ -26,7 +26,6 @@
 
 ## Design
 
-**The Pattern**
 
 **Problema**
 
@@ -43,6 +42,25 @@ Planeamos usar o **"MVC Pattern"**. Este desing pattern consiste em subdividir o
 **Implementation**
 
 (Por ser feito.)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Problema**
+
+Devido aos diferentes menus bem como estados da cobra, causados pela ingestão de maçãs, que pretendemos implementar, seria necessário uma grande quantidade de variáveis.
+
+**Solução**
+
+Para solucionar este problema iremos aplicar o **"State Pattern"**, que permite alterar o comportamento de um determinado objeto quando este muda o seu estado.
+
+**Implementation**
+
+(Por ser feito.)
 
 
+## KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
 
+(Dado o pouco volume de código presente, ainda não nos apercebemos de nenhum code smell.)
+
+
+## TESTING
+
+Pretendemos testar os movimentos da cobra, a geração das maçãs bem como a interação entre os dois. Mais tarde testaremos ainda as colisões das cobras com os limites da arena e entre dois utilizadores.
