@@ -22,7 +22,7 @@
 
 --> Caso as duas cobras se cruzem, ambas perdem. Se o ultizador 1 for contra o ultilizador 2, o jogador 1 perde;
 
---> Possibilidade de mudar a cor da sobra;
+--> Possibilidade de mudar a cor da cobra;
 
 ## Design
 
