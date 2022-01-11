@@ -8,21 +8,22 @@
 
 ### TO BE IMPLEMENTED FEATURES:
 
---> A cobra desloca-se de acordo com o input do utilizador;
+•	A cobra desloca-se de acordo com o input do utilizador;
 
---> Ao comer uma maçã, a cobra aumenta um bloco;
+•	Ao comer uma maçã, a cobra aumenta um bloco;
 
---> Determinadas maçãs, distinguivéis através da cor, dão determinados poderes à cobra;
+•	Determinadas maçãs, distinguíveis através da cor, dão determinados poderes à cobra;
 
---> No caso da cobra embater nos limites da arena, perde o jogo;
+•	No caso da cobra embater nos limites da arena, perde o jogo;
 
---> As maçãs aparecem em posições aleatórias;
+•	As maçãs aparecem em posições aleatórias;
 
---> Possibilidade de ter 2 utilizadores, em simultâneo, um contra o outro;
+•	Possibilidade de ter 2 utilizadores, em simultâneo, um contra o outro;
 
---> Caso as duas cobras se cruzem, ambas perdem. Se o ultizador 1 for contra o ultilizador 2, o jogador 1 perde;
+•	 Caso as duas cobras se cruzem, ambas perdem. Se o utilizador 1 for contra o utilizador 2, o jogador 1 perde;
 
---> Possibilidade de mudar a cor da cobra;
+•	Possibilidade de mudar a cor da cobra;
+
 
 ## Design
 
