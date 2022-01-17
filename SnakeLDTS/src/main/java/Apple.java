@@ -3,8 +3,10 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Apple extends Element {
+    private Powers power;
     public Apple(Position position){
         super(position);
+
     }
     public void draw(TextGraphics graphics,String color){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#EBFF00"));

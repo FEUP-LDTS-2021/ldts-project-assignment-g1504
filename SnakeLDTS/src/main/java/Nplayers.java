@@ -140,8 +140,11 @@ public class Nplayers{
                 Menu menu = new Menu();
                 menu.drawStartMenu();
                 break;
-            case 'X':
+            case '1':
+                Arena arena = new Arena(80,24);
+                Game game  = new Game(arena,screen);
 
+                game.run();
                 break;
             case 'O':
 

@@ -48,15 +48,46 @@ public class Snake {
     public boolean isSnakeCollided(){
         return SnakeCollided;
     }
-    public boolean isAteApple(LinkedList<Position> Apples){
+    public boolean isAteApple(LinkedList<Apple> Apples){
         Position start = getHead();
-        for(Position p: Apples){
-            if(start.equals(p)){
+        for(Apple p: Apples){
+            if(start.equals(p.getPosition())){
                 Apples.remove(p);
+                body.add(whereTo());
+
+                //Position position = new Position()
                 return true;
             }
         }
         return false;
+    }
+    private Position whereTo(){
+        Position position = new Position(0,0);
+        Position head = getHead();
+        switch(direction)
+        {
+            case UP:
+
+                position = new Position(head.getX(), head.getY() - 1);
+                break;
+
+            case DOWN:
+
+                position = new Position(head.getX(), head.getY() + 1);
+                break;
+
+            case LEFT:
+
+                position = new Position(head.getX() - 1, head.getY());
+                break;
+
+            case RIGHT:
+
+                position = new Position(head.getX() + 1, head.getY());
+                break;
+
+        }
+        return position;
     }
     public void endSnake(){
         dead = true;
@@ -98,8 +129,12 @@ public class Snake {
         body.addLast(head);
     }
     public void draw(TextGraphics graphics,String color){
+        Position head = getHead();
         graphics.setBackgroundColor(TextColor.Factory.fromString(color));
         for(Position p: body){
+            if(p.equals(head)){
+                graphics.setBackgroundColor(TextColor.Factory.fromString("#33ff00"));
+            }
             graphics.putString(new TerminalPosition(p.getX(), p.getY()), " ");
         }
 

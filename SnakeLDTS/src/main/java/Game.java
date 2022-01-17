@@ -10,15 +10,28 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Game {
-    public static void main(String[] args) throws IOException {
-        Menu menu = new Menu();
-        menu.drawStartMenu();
+    public Game(Arena arena,Screen screen){
+        this.arena = arena;
+        this.screen = screen;
+    }
+    public void  run() throws IOException {
+        while(true){
+            KeyStroke key;
+            screen.clear();
+            arena.paintArena(screen.newTextGraphics());
+            screen.refresh();
+            key = screen.readInput();
+            arena.processKey(key);
+            arena.getSnake().isAteApple(arena.getApples());
+        }
 
 
 
     }
+    public void setArena(Arena arena){
+        this.arena = arena;
+    }
 
-
-
-
+    private Arena arena;
+    private Screen screen;
 }
