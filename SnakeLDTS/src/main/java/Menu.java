@@ -34,13 +34,7 @@ public class Menu {
         }
 
     }
-    /*private void drawString(int x, int y, String string,String color)
-    {
-        TextGraphics graphics = screen.newTextGraphics();
-        graphics.setForegroundColor(TextColor.Factory.fromString(color));
-        graphics.putString(x, y, string);
 
-    }*/
     public void drawStartMenu() throws IOException {
         KeyStroke key;
 
@@ -83,14 +77,11 @@ public class Menu {
         tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
         tg.putString( 24, 20, Symbols.TRIANGLE_LEFT_POINTING_MEDIUM_BLACK + " HELP");
         tg.putString( 49, 20, Symbols.TRIANGLE_LEFT_POINTING_MEDIUM_BLACK + " EXIT");
-
-
-        /*for (int i=36; i<43; i++) {
-            tg.setBackgroundColor(TextColor.ANSI.WHITE);
-            tg.putString(i,20, " ");
-        }*/
         tg.putString( 36, 20, Symbols.TRIANGLE_LEFT_POINTING_MEDIUM_BLACK + " START");
-
+        tg.setForegroundColor(TextColor.ANSI.WHITE);
+        tg.putString( 26, 22, "(1)");
+        tg.putString( 51, 22, "(3)");
+        tg.putString( 39, 22, "(2)");
 
         screen.refresh();
 
@@ -99,15 +90,18 @@ public class Menu {
     }
     private void processKey(KeyStroke key) throws IOException {
         switch (key.getCharacter()){
-            case 'P':
-                Game game = new Game();
-
+            case '2':
+                screen.stopScreen();
+                Nplayers nplayers = new Nplayers();
+                nplayers.drawNplayers();
                 break;
-            case 'X':
-
+            case '1':
+                screen.stopScreen();
+                Help help = new Help();
+                help.drawHelp();
                 break;
-            case 'O':
-
+            case '3':
+                screen.stopScreen();
                 break;
 
             case 'Q':
