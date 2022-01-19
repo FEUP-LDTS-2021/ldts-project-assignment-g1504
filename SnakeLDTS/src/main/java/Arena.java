@@ -138,7 +138,13 @@ public class Arena {
     }
     private void createApples(){
         Random random = new Random();
+        Random power = new Random();
         apple = new Apple(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1));
+        int powerNumber = power.nextInt(3);
+        if(powerNumber == 1) apple.setPower(Powers.SPEED);
+        if(powerNumber == 2) apple.setPower(Powers.STRENGTH);
+        
+
 
 
 

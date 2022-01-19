@@ -8,7 +8,16 @@ public class Apple extends Element {
         super(position);
 
     }
-    public void draw(TextGraphics graphics,String color){
+
+    public Powers getPower() {
+        return power;
+    }
+
+    public void setPower(Powers power) {
+        this.power = power;
+    }
+
+    public void draw(TextGraphics graphics, String color){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#EBFF00"));
         graphics.putString(new TerminalPosition(this.getX(), this.getY()), "C");
     }
