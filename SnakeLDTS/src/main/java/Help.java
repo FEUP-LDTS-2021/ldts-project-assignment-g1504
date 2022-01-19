@@ -36,7 +36,7 @@ public class Help {
 
     }
 
-    public void drawHelp() throws IOException {
+    public void drawHelp() throws IOException, InterruptedException {
         KeyStroke key;
 
         TextGraphics tg = screen.newTextGraphics();
@@ -170,7 +170,7 @@ public class Help {
         key = screen.readInput();
         processKey(key);
     }
-    private void processKey(KeyStroke key) throws IOException {
+    private void processKey(KeyStroke key) throws IOException, InterruptedException {
         switch (key.getCharacter()){
             case '\n':
                 screen.stopScreen();

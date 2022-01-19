@@ -7,11 +7,12 @@ import java.util.LinkedList;
 
 public class Snake {
     private String color;
+
     private final static int Snake_Initial_Size = 4;
     private Direction direction;
     private boolean SnakeCollided = false;
     private boolean ateApple = false;
-    private boolean dead = false;
+    private boolean SnakeAlive = true;
     private LinkedList<Position> body;
 
     public Snake(int x, int y,Direction direction){
@@ -23,7 +24,12 @@ public class Snake {
         }
         this.direction = direction;
     }
-
+    public boolean isSnakeAlive(){
+        return SnakeAlive;
+    }
+    public void kill(){
+        this.SnakeAlive = false;
+    }
     public LinkedList<Position> getBody() {
         return body;
     }
@@ -48,22 +54,16 @@ public class Snake {
     public boolean isSnakeCollided(){
         return SnakeCollided;
     }
-    public boolean isAteApple(LinkedList<Apple> Apples){
-        Position start = getHead();
-        for(Apple p: Apples){
-            if(start.equals(p.getPosition())){
-                Apples.remove(p);
-                body.add(whereTo());
-
-                //Position position = new Position()
-                return true;
-            }
-        }
-        return false;
+    public void setAte(boolean ate){
+        this.ateApple = ate;
     }
-    private Position whereTo(){
+    public boolean getAte(){
+        return ateApple;
+    }
+    public Position whereTo(){
         Position position = new Position(0,0);
         Position head = getHead();
+
         switch(direction)
         {
             case UP:
@@ -89,10 +89,7 @@ public class Snake {
         }
         return position;
     }
-    public void endSnake(){
-        dead = true;
 
-    }
     public void move()
     {
         // Get current head position
