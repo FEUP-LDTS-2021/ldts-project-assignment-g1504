@@ -36,7 +36,7 @@ public class Nplayers{
 
     }
 
-    public void drawNplayers() throws IOException {
+    public void drawNplayers() throws IOException, InterruptedException {
         KeyStroke key;
 
         TextGraphics tg = screen.newTextGraphics();
@@ -133,7 +133,7 @@ public class Nplayers{
         key = screen.readInput();
         processKey(key);
     }
-    private void processKey(KeyStroke key) throws IOException {
+    private void processKey(KeyStroke key) throws IOException, InterruptedException {
         switch (key.getCharacter()){
             case '\n':
                 screen.stopScreen();
@@ -141,8 +141,8 @@ public class Nplayers{
                 menu.drawStartMenu();
                 break;
             case '1':
-                Arena arena = new Arena(80,24);
-                Game game  = new Game(arena,screen);
+
+                Game game  = new Game(screen);
 
                 game.run();
                 break;

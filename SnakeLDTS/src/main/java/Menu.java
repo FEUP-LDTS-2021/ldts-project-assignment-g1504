@@ -35,7 +35,7 @@ public class Menu {
 
     }
 
-    public void drawStartMenu() throws IOException {
+    public void drawStartMenu() throws IOException, InterruptedException {
         KeyStroke key;
 
         TextGraphics tg = screen.newTextGraphics();
@@ -88,7 +88,7 @@ public class Menu {
         key = screen.readInput();
         processKey(key);
     }
-    private void processKey(KeyStroke key) throws IOException {
+    private void processKey(KeyStroke key) throws IOException, InterruptedException {
         switch (key.getCharacter()){
             case '2':
                 screen.stopScreen();
