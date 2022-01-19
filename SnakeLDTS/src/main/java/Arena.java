@@ -29,6 +29,7 @@ public class Arena {
 
     }
     public void paintArena(Screen screen) throws IOException {
+        String Score = Integer.toString(SCORE);
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(width,height), ' ');
@@ -81,6 +82,7 @@ public class Arena {
         graphics.putString(63, 21, "  " + c + c + c + c + c + c + c + c + c + "  " + c);
         graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
         graphics.putString( 64, 4, "CURRENT SCORE", SGR.BOLD);
+        graphics.putString(64,5,Score,SGR.BOLD);
         graphics.putString( 66, 5, Symbols.TRIANGLE_LEFT_POINTING_MEDIUM_BLACK + "");
         screen.refresh();
     }
@@ -143,7 +145,7 @@ public class Arena {
         int powerNumber = power.nextInt(3);
         if(powerNumber == 1) apple.setPower(Powers.SPEED);
         if(powerNumber == 2) apple.setPower(Powers.STRENGTH);
-        
+
 
 
 
