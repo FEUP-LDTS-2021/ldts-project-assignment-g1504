@@ -3,6 +3,9 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 
 
 import java.io.IOException;
@@ -13,12 +16,11 @@ import java.util.Random;
 
 public class Arena {
     private int width,height;
-    static int SCORE;
+    static int SCORE = 0;
     public static final int TICKS_PER_SECOND = 10;
     private Apple apple;
     private LinkedList<Boxes> boxes = new LinkedList<Boxes>();
     private Snake snake;
-
 
     public Arena(int width,int height, Snake snake){
         this.width = width;
@@ -82,9 +84,15 @@ public class Arena {
         graphics.putString(63, 21, "  " + c + c + c + c + c + c + c + c + c + "  " + c);
         graphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
         graphics.putString( 64, 4, "CURRENT SCORE", SGR.BOLD);
-        graphics.putString(64,5,Score,SGR.BOLD);
+        graphics.putString(68,5,Score,SGR.BOLD);
         graphics.putString( 66, 5, Symbols.TRIANGLE_LEFT_POINTING_MEDIUM_BLACK + "");
         screen.refresh();
+
+
+
+
+
+
     }
     private Direction getOppositeDirection(Direction direction) {
         if (direction == Direction.LEFT) {
@@ -102,11 +110,11 @@ public class Arena {
 
         return direction;
     }
-    public boolean checkCollision(){
+
+    public boolean checkCollision() throws IOException, InterruptedException {
         Position start = snake.getHead();
         for(Boxes p: boxes){
             if(start.equals(p.getPosition())){
-
                 snake.kill();
                 return true;
             }
@@ -156,10 +164,11 @@ public class Arena {
         if(start.equals(apple.getPosition())){
             snake.getBody().add(snake.whereTo());
             snake.setAte(true);
+            snake.setPower(apple.getPower());
         }
     }
 
-    public Apple getApples() {
+    public Apple getApple() {
         return apple;
     }
     private LinkedList<Boxes> createBoxes(){
@@ -173,10 +182,10 @@ public class Arena {
         return boxes;
     }
 
+    public int getSCORE(){return SCORE;}
 
 
-
-    public void tick()  {
+    public void tick() throws IOException, InterruptedException {
         snake.move();
         if(checkCollision()) return;
         isAteApple();
@@ -187,24 +196,9 @@ public class Arena {
         snake.setAte(false);
 
     }
-    public void run(){
-        while (true){
-            snake.move();
-        }
-    }
-    /*public void updateArena(Screen screen) throws IOException {
-        snake.move();
-        isAteApple();
-        if(snake.getAte()) {createApples();SCORE++;}
-        snake.setAte(false);
-        if(!checkCollision()) paintArena(screen);
 
 
 
 
-
-
-
-    }*/
 }
 

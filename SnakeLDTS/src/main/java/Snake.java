@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class Snake {
     private String color;
-
+    private Powers power;
     private final static int Snake_Initial_Size = 4;
     private Direction direction;
     private boolean SnakeCollided = false;
@@ -15,7 +15,7 @@ public class Snake {
     private boolean SnakeAlive = true;
     private LinkedList<Position> body;
 
-    public Snake(int x, int y,Direction direction){
+    public Snake(int x, int y,Direction direction, String color){
 
         this.direction = direction;
         body = new LinkedList<Position>();
@@ -60,6 +60,8 @@ public class Snake {
     public boolean getAte(){
         return ateApple;
     }
+    public Powers getPower(){return power;}
+    public void setPower(Powers power){this.power = power;}
     public Position whereTo(){
         Position position = new Position(0,0);
         Position head = getHead();
@@ -130,7 +132,7 @@ public class Snake {
         graphics.setBackgroundColor(TextColor.Factory.fromString(color));
         for(Position p: body){
             if(p.equals(head)){
-                graphics.setBackgroundColor(TextColor.Factory.fromString("#33ff00"));
+                graphics.setBackgroundColor(TextColor.ANSI.WHITE);
             }
             graphics.putString(new TerminalPosition(p.getX(), p.getY()), " ");
         }

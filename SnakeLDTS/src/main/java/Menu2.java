@@ -1,47 +1,27 @@
-import com.googlecode.lanterna.Symbols;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+
 import java.io.IOException;
-
-public class Menu {
-
-    public Menu(){
-        try{
-            Terminal terminal = new DefaultTerminalFactory().createTerminal();
-            Screen screen = new TerminalScreen(terminal);
+import java.security.Key;
+import java.util.LinkedList;
+import java.util.Random;
 
 
-
-            this.screen = new TerminalScreen(terminal);
-
-            this.screen.setCursorPosition(null);
-            this.screen.startScreen();
-            this.screen.doResizeIfNecessary();
+public class Menu2 {
+    private int width,height;
 
 
-
-
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
-
-    public void drawStartMenu() throws IOException, InterruptedException {
-        KeyStroke key;
-
+    public void paintMenu2(Screen screen) throws IOException, InterruptedException {
         TextGraphics tg = screen.newTextGraphics();
-
-        screen.startScreen();
-
+        tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+        tg.fillRectangle(new TerminalPosition(0,0),new TerminalSize(width,height), ' ');
 
         for (int j=0; j<80; j++) {
             for (int i = 0; i < 24; i++) {
@@ -83,17 +63,14 @@ public class Menu {
         tg.putString( 51, 22, "(3)");
         tg.putString( 39, 22, "(2)");
 
+
         screen.refresh();
 
+        KeyStroke key;
         key = screen.readInput();
         processKey(key);
-    }
-    private void processKey(KeyStroke key) throws IOException, InterruptedException {
+
         switch (key.getCharacter()){
-            case '2':
-                Custom custom = new Custom();
-                custom.paintCustom(screen);
-                break;
             case '1':
                 Help help = new Help();
                 help.paintHelp(screen);
@@ -101,9 +78,19 @@ public class Menu {
             case '3':
                 screen.stopScreen();
                 break;
+            case '2':
+                Custom custom = new Custom();
+                custom.paintCustom(screen);
+                break;
+
         }
+
+
     }
-    private Screen screen;
+
+    private void processKey(KeyStroke key) throws IOException, InterruptedException {
+
+    }
+
 
 }
-

@@ -18,12 +18,15 @@ public class Game {
     private final static int GAME_SPEED_5 = 35;
     private Snake snake;
 
-    public Game(Screen screen){
+    public Game(Screen screen, String color){
 
         this.screen = screen;
-        snake = new Snake(30,15,Direction.RIGHT);
+        snake = new Snake(30,15,Direction.RIGHT, color);
         this.arena = new Arena(60,24,snake);
+        snake.setColor(color);
     }
+
+
     private void processKey() throws IOException {
         KeyStroke key = screen.pollInput();
         if (key == null) {
@@ -34,10 +37,23 @@ public class Game {
         }
         if(validKey(key)) {
             switch (key.getKeyType()) {
-                case ArrowUp -> snake.setDirection(Direction.UP);
-                case ArrowDown -> snake.setDirection(Direction.DOWN);
-                case ArrowLeft -> snake.setDirection(Direction.LEFT);
-                case ArrowRight -> snake.setDirection(Direction.RIGHT);
+                case ArrowUp : {
+                    snake.setDirection(Direction.UP);
+                    break;
+                }
+                case ArrowDown: {
+                    snake.setDirection(Direction.DOWN);
+                    break;
+                }
+                case ArrowLeft: {
+                    snake.setDirection(Direction.LEFT);
+                    break;
+                }
+                case ArrowRight: {
+                    snake.setDirection(Direction.RIGHT);
+                    break;
+                }
+
             }
 
         }
@@ -54,7 +70,7 @@ public class Game {
         }
         return true;
     }
-    private void tick() throws IOException {
+    private void tick() throws IOException, InterruptedException {
         processKey();
         arena.tick();
         screen.clear();
@@ -67,7 +83,8 @@ public class Game {
             tick();
             Thread.sleep(1000L / Arena.TICKS_PER_SECOND);
         }
-
+        GameOver menuOver = new GameOver();
+        menuOver.paintGameOver(screen,arena.getSCORE());
         System.exit(0);
     }
 
@@ -95,7 +112,6 @@ public class Game {
     public void setArena(Arena arena){
         this.arena = arena;
     }
-    private boolean running = true;
     private Arena arena;
     private Screen screen;
 }
