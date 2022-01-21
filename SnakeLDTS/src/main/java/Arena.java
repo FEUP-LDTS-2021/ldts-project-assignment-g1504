@@ -187,7 +187,7 @@ public class Arena {
     private LinkedList<Boxes> createBoxes(){
         Random random = new Random();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
             boxes.add(new Boxes(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1)));
         return boxes;
     }
