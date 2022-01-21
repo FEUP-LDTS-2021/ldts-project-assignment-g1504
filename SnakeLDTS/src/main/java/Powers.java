@@ -1,3 +1,3 @@
 public enum Powers {
-    SPEED,STRENGTH,;
+    SPEED,STRENGTH,NONE;
 }

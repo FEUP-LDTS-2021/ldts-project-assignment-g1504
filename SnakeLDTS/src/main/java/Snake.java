@@ -14,6 +14,7 @@ public class Snake {
     private boolean ateApple = false;
     private boolean SnakeAlive = true;
     private LinkedList<Position> body;
+    private int speed = 10;
 
     public Snake(int x, int y,Direction direction, String color){
 
@@ -61,7 +62,17 @@ public class Snake {
         return ateApple;
     }
     public Powers getPower(){return power;}
-    public void setPower(Powers power){this.power = power;}
+
+    public int getSpeed(){return speed;}
+    public void setSpeed(int speed){this.speed = speed;}
+    public void setPower(Powers power){
+        this.power = power;
+        if(power == Powers.SPEED){
+            setSpeed(20);
+        }else{
+            setSpeed(10);
+        }
+    }
     public Position whereTo(){
         Position position = new Position(0,0);
         Position head = getHead();

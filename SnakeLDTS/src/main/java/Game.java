@@ -81,7 +81,7 @@ public class Game {
     private void beginTicks() throws IOException, InterruptedException {
         while (arena.getSnake().isSnakeAlive()) {
             tick();
-            Thread.sleep(1000L / Arena.TICKS_PER_SECOND);
+            Thread.sleep(1000L / arena.getSnake().getSpeed());
         }
         GameOver menuOver = new GameOver();
         menuOver.paintGameOver(screen,arena.getSCORE());

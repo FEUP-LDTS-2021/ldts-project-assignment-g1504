@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class Arena {
     private int width,height;
-    static int SCORE = 0;
+    static  int SCORE = 0;
     public static final int TICKS_PER_SECOND = 10;
     private Apple apple;
     private LinkedList<Boxes> boxes = new LinkedList<Boxes>();
@@ -36,7 +36,7 @@ public class Arena {
         graphics.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(width,height), ' ');
         snake.draw(graphics,snake.getColor());
-        apple.draw(graphics,null);
+        apple.draw(graphics, apple.getColor());
         for(Boxes b: boxes){
             b.draw(graphics,null);
         }
@@ -112,9 +112,16 @@ public class Arena {
     }
 
     public boolean checkCollision() throws IOException, InterruptedException {
+        if(boxes.isEmpty()){
+            createBoxes();
+        }
         Position start = snake.getHead();
         for(Boxes p: boxes){
             if(start.equals(p.getPosition())){
+                if(snake.getPower() == Powers.STRENGTH){
+                    boxes.remove(p);
+                    return false;
+                }
                 snake.kill();
                 return true;
             }
@@ -135,7 +142,7 @@ public class Arena {
             return true;
 
         }
-        if(snakeHead.getY() < 0 || snakeHead.getY() > height){
+        if(snakeHead.getY() < 0 || snakeHead.getY() > height-2){
             snake.kill();
             return true;
         }
@@ -150,9 +157,15 @@ public class Arena {
         Random random = new Random();
         Random power = new Random();
         apple = new Apple(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1));
-        int powerNumber = power.nextInt(3);
-        if(powerNumber == 1) apple.setPower(Powers.SPEED);
-        if(powerNumber == 2) apple.setPower(Powers.STRENGTH);
+        int powerNumber = power.nextInt(10);
+        if(powerNumber > 4 && powerNumber <= 7) {
+            apple.setPower(Powers.SPEED);
+        }else if(powerNumber > 7){
+            apple.setPower(Powers.STRENGTH);
+        }else{
+            apple.setPower(Powers.NONE);
+        }
+
 
 
 
@@ -174,9 +187,24 @@ public class Arena {
     private LinkedList<Boxes> createBoxes(){
         Random random = new Random();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
             boxes.add(new Boxes(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1)));
         return boxes;
+    }
+    private boolean checkCreatedBox(Boxes box){
+        if (snake.getDirection() == Direction.LEFT && box.getX() == snake.getHead().getX() -1) {
+            return false;
+        }
+        if (snake.getDirection() == Direction.RIGHT && box.getX() == snake.getHead().getX() +1) {
+            return false;
+        }
+        if (snake.getDirection() == Direction.UP && box.getY() == snake.getHead().getX() +1) {
+            return false;
+        }
+        if (snake.getDirection() == Direction.DOWN && box.getX() == snake.getHead().getY() -1) {
+            return false;
+        }
+        return true;
     }
     public LinkedList<Boxes> getBoxes(){
         return boxes;
