@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class Arena {
     private int width,height;
-    static  int SCORE = 0;
+    private int SCORE = 0;
     public static final int TICKS_PER_SECOND = 10;
     private Apple apple;
     private LinkedList<Boxes> boxes = new LinkedList<Boxes>();
@@ -28,8 +28,8 @@ public class Arena {
         this.snake = snake;
         createApples();
         createBoxes();
-
     }
+
     public void paintArena(Screen screen) throws IOException {
         String Score = Integer.toString(SCORE);
         TextGraphics graphics = screen.newTextGraphics();
@@ -37,26 +37,18 @@ public class Arena {
         graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(width,height), ' ');
         snake.draw(graphics,snake.getColor());
         apple.draw(graphics, apple.getColor());
-        for(Boxes b: boxes){
-            b.draw(graphics,null);
-        }
+        for(Boxes b: boxes){b.draw(graphics,null);}
+
         for (int j=0; j<24; j++) {
             graphics.setBackgroundColor(TextColor.ANSI.WHITE);
             graphics.putString(0,j," ");
         }
 
-        for (int j=0; j<24; j++) {
-            graphics.putString(60,j," ");
-        }
+        for (int j=0; j<24; j++) {graphics.putString(60,j," ");}
 
-        for (int j=0; j<60; j++) {
-            graphics.putString(j,0," ");
-        }
+        for (int j=0; j<60; j++) {graphics.putString(j,0," ");}
 
-        for (int j=0; j<60; j++) {
-            graphics.putString(j,23," ");
-        }
-
+        for (int j=0; j<60; j++) {graphics.putString(j,23," ");}
 
         for (int j=61; j<80; j++) {
             for (int i = 0; i < 24; i++) {
@@ -87,26 +79,16 @@ public class Arena {
         graphics.putString(68,5,Score,SGR.BOLD);
         graphics.putString( 66, 5, Symbols.TRIANGLE_LEFT_POINTING_MEDIUM_BLACK + "");
         screen.refresh();
-
-
-
-
-
-
     }
+
     private Direction getOppositeDirection(Direction direction) {
-        if (direction == Direction.LEFT) {
-            return Direction.RIGHT;
-        }
-        if (direction == Direction.RIGHT) {
-            return Direction.LEFT;
-        }
-        if (direction == Direction.UP) {
-            return Direction.DOWN;
-        }
-        if (direction == Direction.DOWN) {
-            return Direction.UP;
-        }
+        if (direction == Direction.LEFT) {return Direction.RIGHT;}
+
+        if (direction == Direction.RIGHT) {return Direction.LEFT;}
+
+        if (direction == Direction.UP) {return Direction.DOWN;}
+
+        if (direction == Direction.DOWN) {return Direction.UP;}
 
         return direction;
     }
@@ -115,6 +97,7 @@ public class Arena {
         if(boxes.isEmpty()){
             createBoxes();
         }
+
         Position start = snake.getHead();
         for(Boxes p: boxes){
             if(start.equals(p.getPosition())){
@@ -127,51 +110,44 @@ public class Arena {
             }
         }
 
-
         Position snakeHead = snake.getHead();
 
         for(int i = snake.getBody().size()-2; i > 0;i--){
             if(snakeHead.equals(snake.getBody().get(i))){
                 snake.kill();
                 return true;
-
             }
         }
+
         if(snakeHead.getX() < 0 || snakeHead.getX() > width){
             snake.kill();
             return true;
-
         }
+
         if(snakeHead.getY() < 0 || snakeHead.getY() > height-2){
             snake.kill();
             return true;
         }
-
-
         return false;
     }
+
     public Snake getSnake(){
         return snake;
     }
+
     private void createApples(){
         Random random = new Random();
         Random power = new Random();
         apple = new Apple(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1));
         int powerNumber = power.nextInt(10);
-        if(powerNumber > 4 && powerNumber <= 7) {
-            apple.setPower(Powers.SPEED);
-        }else if(powerNumber > 7){
-            apple.setPower(Powers.STRENGTH);
-        }else{
-            apple.setPower(Powers.NONE);
-        }
 
+        if(powerNumber > 4 && powerNumber <= 7) {apple.setPower(Powers.SPEED);}
 
+        else if(powerNumber > 7){apple.setPower(Powers.STRENGTH);}
 
-
-
-
+        else{apple.setPower(Powers.NONE);}
     }
+
     public void isAteApple(){
         Position start = snake.getHead();
         if(start.equals(apple.getPosition())){
@@ -184,6 +160,7 @@ public class Arena {
     public Apple getApple() {
         return apple;
     }
+
     private LinkedList<Boxes> createBoxes(){
         Random random = new Random();
 
@@ -191,32 +168,31 @@ public class Arena {
             boxes.add(new Boxes(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1)));
         return boxes;
     }
+
     private boolean checkCreatedBox(Boxes box){
-        if (snake.getDirection() == Direction.LEFT && box.getX() == snake.getHead().getX() -1) {
-            return false;
-        }
-        if (snake.getDirection() == Direction.RIGHT && box.getX() == snake.getHead().getX() +1) {
-            return false;
-        }
-        if (snake.getDirection() == Direction.UP && box.getY() == snake.getHead().getX() +1) {
-            return false;
-        }
-        if (snake.getDirection() == Direction.DOWN && box.getX() == snake.getHead().getY() -1) {
-            return false;
-        }
+        if (snake.getDirection() == Direction.LEFT && box.getX() == snake.getHead().getX() -1) {return false;}
+
+        if (snake.getDirection() == Direction.RIGHT && box.getX() == snake.getHead().getX() +1) {return false;}
+
+        if (snake.getDirection() == Direction.UP && box.getY() == snake.getHead().getX() +1) {return false;}
+
+        if (snake.getDirection() == Direction.DOWN && box.getX() == snake.getHead().getY() -1) {return false;}
+
         return true;
     }
+
     public LinkedList<Boxes> getBoxes(){
         return boxes;
     }
 
     public int getSCORE(){return SCORE;}
 
-
     public void tick() throws IOException, InterruptedException {
         snake.move();
         if(checkCollision()) return;
+
         isAteApple();
+
         if(snake.getAte()){
             createApples();
             SCORE++;

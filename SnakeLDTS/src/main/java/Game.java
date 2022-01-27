@@ -16,25 +16,22 @@ public class Game {
     private final static int GAME_SPEED_3 = 60;
     private final static int GAME_SPEED_4 = 45;
     private final static int GAME_SPEED_5 = 35;
+
     private Snake snake;
 
     public Game(Screen screen, String color){
-
         this.screen = screen;
         snake = new Snake(30,15,Direction.RIGHT, color);
         this.arena = new Arena(60,24,snake);
         snake.setColor(color);
     }
 
-
     private void processKey() throws IOException {
         KeyStroke key = screen.pollInput();
-        if (key == null) {
-            return;
-        }
-        if (key.getCharacter() != null) {
-            return;
-        }
+        if (key == null) {return;}
+
+        if (key.getCharacter() != null) {return;}
+
         if(validKey(key)) {
             switch (key.getKeyType()) {
                 case ArrowUp : {
@@ -55,9 +52,9 @@ public class Game {
                 }
 
             }
-
         }
     }
+
     private boolean validKey(KeyStroke key){
         if(key.getKeyType() == KeyType.ArrowUp && snake.getDirection() == Direction.DOWN){
             return false;
@@ -70,14 +67,14 @@ public class Game {
         }
         return true;
     }
+
     private void tick() throws IOException, InterruptedException {
         processKey();
         arena.tick();
         screen.clear();
         arena.paintArena(screen);
-
-
     }
+
     private void beginTicks() throws IOException, InterruptedException {
         while (arena.getSnake().isSnakeAlive()) {
             tick();
@@ -105,8 +102,6 @@ public class Game {
             arena.getSnake().isAteApple(arena.getApples());
             arena.checkCollision();
         }*/
-
-
     }
 
     public void setArena(Arena arena){

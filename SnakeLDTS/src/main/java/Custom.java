@@ -49,10 +49,10 @@ public class Custom {
 
         tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
 
-
         tg.putString( 32, 2, " CUSTOMIZE SNAKE", SGR.BOLD);
 
         tg.setBackgroundColor(TextColor.ANSI.WHITE);
+
         for (int i= 11; i < 70; i++) {
             tg.putString(i, 4, " ");
             //Thread.sleep(10);
@@ -83,7 +83,6 @@ public class Custom {
         tg.setForegroundColor(TextColor.ANSI.WHITE);
         snake(tg);
 
-
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.setForegroundColor(TextColor.ANSI.DEFAULT);
         tg.putString(15, 7, "(1)", SGR.BOLD);
@@ -91,13 +90,11 @@ public class Custom {
         tg.putString(18,7," ");
         tg.putString(19,7," ");
 
-
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.putString(15, 9, "(2)", SGR.BOLD);
         tg.setBackgroundColor(TextColor.ANSI.MAGENTA);
         tg.putString(18,9," ");
         tg.putString(19,9," ");
-
 
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.putString(15, 11, "(3)", SGR.BOLD);
@@ -117,9 +114,6 @@ public class Custom {
         tg.putString(18,15," ");
         tg.putString(19,15," ");
 
-
-
-
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.setForegroundColor(TextColor.ANSI.DEFAULT);
         tg.putString(59, 7, "(6)", SGR.BOLD);
@@ -127,13 +121,11 @@ public class Custom {
         tg.putString(62,7," ");
         tg.putString(63,7," ");
 
-
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.putString(59, 9, "(7)", SGR.BOLD);
         tg.setBackgroundColor(TextColor.ANSI.MAGENTA_BRIGHT);
         tg.putString(62,9," ");
         tg.putString(63,9," ");
-
 
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.putString(59, 11, "(8)", SGR.BOLD);
@@ -157,106 +149,105 @@ public class Custom {
         tg.setForegroundColor(TextColor.ANSI.WHITE);
         tg.putString( 37, 22, "(ENTER)");
 
-
-
         screen.refresh();
-
 
         KeyStroke key;
         do {
-        key = screen.readInput();
+            key = screen.readInput();
 
-        switch (key.getCharacter()) {
-            case 'x':
-                Menu2 menu2 = new Menu2();
-                menu2.paintMenu2(screen);
-                break;
-            case '\n':
-                Game game = new Game(screen, color);
-                game.run();
-                break;
-            case '1':
-                color = String.valueOf(TextColor.ANSI.BLUE);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.BLUE);
-                snake(tg);
-                screen.refresh();
-                break;
+            switch (key.getCharacter()) {
+                case 'x':
+                    Menu2 menu2 = new Menu2();
+                    menu2.paintMenu2(screen);
+                    break;
 
-            case '2':
-                color = String.valueOf(TextColor.ANSI.MAGENTA);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.MAGENTA);
-                snake(tg);
-                screen.refresh();
-                break;
-            case '3':
-                color = String.valueOf(TextColor.ANSI.YELLOW);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.YELLOW);
-                snake(tg);
-                screen.refresh();
-                break;
-            case '4':
-                color = String.valueOf(TextColor.ANSI.RED);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.RED);
-                snake(tg);
-                screen.refresh();
-                break;
-            case '5':
-                color = String.valueOf(TextColor.ANSI.GREEN);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.GREEN);
-                snake(tg);
-                screen.refresh();
-                break;
-            case '6':
-                color = String.valueOf(TextColor.ANSI.BLUE_BRIGHT);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.BLUE_BRIGHT);
-                snake(tg);
-                screen.refresh();
-                break;
-            case '7':
-                color = String.valueOf(TextColor.ANSI.MAGENTA_BRIGHT);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.MAGENTA_BRIGHT);
-                snake(tg);
-                screen.refresh();
-                break;
-            case '8':
-                color = String.valueOf(TextColor.ANSI.YELLOW_BRIGHT);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
-                snake(tg);
-                screen.refresh();
-                break;
-            case '9':
-                color = String.valueOf(TextColor.ANSI.RED_BRIGHT);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
-                snake(tg);
-                screen.refresh();
-                break;
-            case '0':
-                color = String.valueOf(TextColor.ANSI.GREEN_BRIGHT);
-                tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
-                tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
-                snake(tg);
-                screen.refresh();
-                break;
+                case '\n':
+                    Game game = new Game(screen, color);
+                    game.run();
+                    break;
 
-        }
-        }while (key.getCharacter() != '\n' || key.getCharacter() != 'x');
+                case '1':
+                    color = String.valueOf(TextColor.ANSI.BLUE);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.BLUE);
+                    snake(tg);
+                    screen.refresh();
+                    break;
 
+                case '2':
+                    color = String.valueOf(TextColor.ANSI.MAGENTA);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.MAGENTA);
+                    snake(tg);
+                    screen.refresh();
+                    break;
 
+                case '3':
+                    color = String.valueOf(TextColor.ANSI.YELLOW);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.YELLOW);
+                    snake(tg);
+                    screen.refresh();
+                    break;
 
+                case '4':
+                    color = String.valueOf(TextColor.ANSI.RED);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.RED);
+                    snake(tg);
+                    screen.refresh();
+                    break;
+
+                case '5':
+                    color = String.valueOf(TextColor.ANSI.GREEN);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.GREEN);
+                    snake(tg);
+                    screen.refresh();
+                    break;
+
+                case '6':
+                    color = String.valueOf(TextColor.ANSI.BLUE_BRIGHT);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.BLUE_BRIGHT);
+                    snake(tg);
+                    screen.refresh();
+                    break;
+
+                case '7':
+                    color = String.valueOf(TextColor.ANSI.MAGENTA_BRIGHT);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.MAGENTA_BRIGHT);
+                    snake(tg);
+                    screen.refresh();
+                    break;
+
+                case '8':
+                    color = String.valueOf(TextColor.ANSI.YELLOW_BRIGHT);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
+                    snake(tg);
+                    screen.refresh();
+                    break;
+
+                case '9':
+                    color = String.valueOf(TextColor.ANSI.RED_BRIGHT);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.RED_BRIGHT);
+                    snake(tg);
+                    screen.refresh();
+                    break;
+
+                case '0':
+                    color = String.valueOf(TextColor.ANSI.GREEN_BRIGHT);
+                    tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
+                    tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+                    snake(tg);
+                    screen.refresh();
+                    break;
+            }
+        } while (key.getCharacter() != '\n' || key.getCharacter() != 'x');
     }
 
-
-
     private String color;
-
-
 }

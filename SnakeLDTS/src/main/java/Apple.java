@@ -5,9 +5,9 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Apple extends Element {
     private Powers power;
     private String color = "#FF0202";
+
     public Apple(Position position){
         super(position);
-
     }
 
     public String getColor() {
@@ -23,9 +23,11 @@ public class Apple extends Element {
         this.power = power;
         if(power == Powers.SPEED){
             color = "#0224FF";
-        }else if(power == Powers.STRENGTH){
+        }
+        else if(power == Powers.STRENGTH){
             color = "#FF02DC";
-        }else{
+        }
+        else{
             color = "#FF0202";
         }
     }

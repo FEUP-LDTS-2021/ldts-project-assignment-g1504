@@ -17,7 +17,6 @@ import java.util.Random;
 public class GameOver {
     private int width, height;
 
-
     public void paintGameOver(Screen screen, int score) throws IOException, InterruptedException {
         TextGraphics tg = screen.newTextGraphics();
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
@@ -30,7 +29,6 @@ public class GameOver {
             }
         }
 
-
         for (int j = 0; j < 80; j++) {
             for (int i = 0; i < 24; i++) {
                 tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
@@ -41,7 +39,6 @@ public class GameOver {
         tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
 
         tg.putString(36, 2, "GAME OVER", SGR.BOLD);
-
 
         tg.setBackgroundColor(TextColor.ANSI.WHITE);
         for (int i = 11; i < 70; i++) {
@@ -69,7 +66,6 @@ public class GameOver {
             //Thread.sleep(10);
             screen.refresh();
         }
-
 
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.setForegroundColor(TextColor.ANSI.DEFAULT);
@@ -107,11 +103,10 @@ public class GameOver {
                 Menu menu = new Menu();
                 menu.drawStartMenu();
                 break;
+
             case '2':
                 System.exit(0);
         }
-
-
     }
 
     private void processKey(KeyStroke key) throws IOException, InterruptedException {

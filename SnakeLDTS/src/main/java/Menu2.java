@@ -17,7 +17,6 @@ import java.util.Random;
 public class Menu2 {
     private int width,height;
 
-
     public void paintMenu2(Screen screen) throws IOException, InterruptedException {
         TextGraphics tg = screen.newTextGraphics();
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
@@ -30,10 +29,7 @@ public class Menu2 {
             }
         }
 
-
         tg.setForegroundColor(TextColor.ANSI.DEFAULT);
-
-
 
         char c = Symbols.BLOCK_SOLID;
         tg.putString(11, 2, "    " + c + c + c + c + "         " + c + c + c + c + c + "    " + c + c + c + c + c + "     " + c + "        " + c + c);
@@ -63,7 +59,6 @@ public class Menu2 {
         tg.putString( 51, 22, "(3)");
         tg.putString( 39, 22, "(2)");
 
-
         screen.refresh();
 
         KeyStroke key;
@@ -75,17 +70,16 @@ public class Menu2 {
                 Help help = new Help();
                 help.paintHelp(screen);
                 break;
+
             case '3':
                 screen.stopScreen();
                 break;
+
             case '2':
                 Custom custom = new Custom();
                 custom.paintCustom(screen);
                 break;
-
         }
-
-
     }
 
     private void processKey(KeyStroke key) throws IOException, InterruptedException {

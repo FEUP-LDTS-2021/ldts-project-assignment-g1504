@@ -10,7 +10,6 @@ import java.io.IOException;
 public class Help {
     private int width,height;
 
-
     public void paintHelp(Screen screen) throws IOException, InterruptedException {
         TextGraphics tg = screen.newTextGraphics();
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
@@ -23,7 +22,6 @@ public class Help {
             }
         }
 
-
         for (int j=0; j<80; j++) {
             for (int i = 0; i < 24; i++) {
                 tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
@@ -32,7 +30,6 @@ public class Help {
         }
 
         tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
-
         tg.putString( 38, 2, "HELP", SGR.BOLD);
 
         for (int j=25; j<30; j++) {
@@ -62,7 +59,6 @@ public class Help {
                 tg.putString(j,i," ");
             }
         }
-
 
         //PLAYER1
         for (int j=24; j<29; j++) {
@@ -125,8 +121,6 @@ public class Help {
             screen.refresh();
         }
 
-
-
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.setForegroundColor(TextColor.ANSI.WHITE);
         tg.putString( 37, 22, "(ENTER)");
@@ -136,8 +130,6 @@ public class Help {
 
         tg.putString( 41, 13, "Pink Apple allows the snake", SGR.BOLD);
         tg.putString(41,14,"to go against boxes.",SGR.BOLD);
-
-
 
         screen.refresh();
 
@@ -150,9 +142,7 @@ public class Help {
                 Menu2 menu2 = new Menu2();
                 menu2.paintMenu2(screen);
                 break;
-
         }
-
     }
 
     private void processKey(KeyStroke key) throws IOException, InterruptedException {

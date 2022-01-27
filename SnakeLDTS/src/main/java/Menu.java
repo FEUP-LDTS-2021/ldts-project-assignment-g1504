@@ -17,31 +17,21 @@ public class Menu {
             Terminal terminal = new DefaultTerminalFactory().createTerminal();
             Screen screen = new TerminalScreen(terminal);
 
-
-
             this.screen = new TerminalScreen(terminal);
-
             this.screen.setCursorPosition(null);
             this.screen.startScreen();
             this.screen.doResizeIfNecessary();
-
-
-
-
         }
+
         catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
     public void drawStartMenu() throws IOException, InterruptedException {
         KeyStroke key;
-
         TextGraphics tg = screen.newTextGraphics();
-
         screen.startScreen();
-
 
         for (int j=0; j<80; j++) {
             for (int i = 0; i < 24; i++) {
@@ -50,10 +40,7 @@ public class Menu {
             }
         }
 
-
         tg.setForegroundColor(TextColor.ANSI.DEFAULT);
-
-
 
         char c = Symbols.BLOCK_SOLID;
         tg.putString(11, 2, "    " + c + c + c + c + "         " + c + c + c + c + c + "    " + c + c + c + c + c + "     " + c + "        " + c + c);
@@ -84,7 +71,6 @@ public class Menu {
         tg.putString( 39, 22, "(2)");
 
         screen.refresh();
-
         key = screen.readInput();
         processKey(key);
     }
@@ -94,16 +80,17 @@ public class Menu {
                 Custom custom = new Custom();
                 custom.paintCustom(screen);
                 break;
+
             case '1':
                 Help help = new Help();
                 help.paintHelp(screen);
                 break;
+
             case '3':
                 screen.stopScreen();
                 break;
         }
     }
     private Screen screen;
-
 }
 

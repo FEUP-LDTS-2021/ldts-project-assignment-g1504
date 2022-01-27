@@ -5,7 +5,5 @@ public class Application {
         Menu menu = new Menu();
         menu.drawStartMenu();
         GameOver Overmenu = new GameOver();
-
-
     }
 }
