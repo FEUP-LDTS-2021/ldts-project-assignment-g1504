@@ -7,7 +7,7 @@ import com.googlecode.lanterna.screen.Screen;
 import java.io.IOException;
 
 
-public class Help {
+public class Help { //Menu com algumas instruções
     private int width,height;
 
     public void paintHelp(Screen screen) throws IOException, InterruptedException {

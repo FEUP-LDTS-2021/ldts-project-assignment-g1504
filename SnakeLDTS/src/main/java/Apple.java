@@ -6,13 +6,9 @@ public class Apple extends Element {
     private Powers power;
     private String color = "#FF0202";
 
-    public Apple(Position position){
-        super(position);
-    }
+    public Apple(Position position){super(position);}
 
-    public String getColor() {
-        return color;
-    }
+    public String getColor() {return color;}
 
     public Powers getPower() {
         return power;

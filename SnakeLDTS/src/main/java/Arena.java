@@ -32,7 +32,7 @@ public class Arena {
         createBoxes();
     }
 
-    public void paintArena(Screen screen) throws IOException {
+    public void paintArena(Screen screen) throws IOException { //Inicializar arena
         String Score = Integer.toString(SCORE);
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
@@ -115,7 +115,7 @@ public class Arena {
 
         Position snakeHead = snake.getHead();
 
-        for(int i = snake.getBody().size()-2; i > 0;i--){
+        for(int i = snake.getBody().size()-2; i > 0; i--){
             if(snakeHead.equals(snake.getBody().get(i))){
                 snake.kill();
                 return true;
@@ -141,17 +141,18 @@ public class Arena {
     private void createApples(){
         Random random = new Random();
         Random power = new Random();
-        apple = new Apple(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1));
+
+        apple = new Apple(new Position (random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
         int powerNumber = power.nextInt(10);
 
         if(powerNumber > 4 && powerNumber <= 7) {apple.setPower(Powers.SPEED);}
 
-        else if(powerNumber > 7){apple.setPower(Powers.STRENGTH);}
+        else if(powerNumber > 7) {apple.setPower(Powers.STRENGTH);}
 
-        else{apple.setPower(Powers.NONE);}
+        else {apple.setPower(Powers.NONE);}
     }
 
-    public void isAteApple(){
+    public void isAteApple() {
         Position start = snake.getHead();
         if(start.equals(apple.getPosition())){
             snake.getBody().add(snake.whereTo());
@@ -167,8 +168,7 @@ public class Arena {
     private LinkedList<Boxes> createBoxes(){
         Random random = new Random();
 
-        for (int i = 0; i < 10; i++)
-            boxes.add(new Boxes(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1)));
+        for (int i = 0; i < 10; i++) {boxes.add(new Boxes(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1)));}
         return boxes;
     }
 
@@ -188,7 +188,7 @@ public class Arena {
         return boxes;
     }
 
-    public int getSCORE(){return SCORE;}
+    public int getSCORE() {return SCORE;}
 
     public void tick() throws IOException, InterruptedException {
         snake.move();

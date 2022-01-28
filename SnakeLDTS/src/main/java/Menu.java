@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class Menu {
 
-    public Menu(){
+    public Menu(){ //Menu principal
         try{
             Terminal terminal = new DefaultTerminalFactory().createTerminal();
             Screen screen = new TerminalScreen(terminal);

@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 
-public class Menu2 {
+public class Menu2 { //Menu onde se escolhem as cores da cobra
     private int width,height;
 
     public void paintMenu2(Screen screen) throws IOException, InterruptedException {
