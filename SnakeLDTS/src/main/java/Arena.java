@@ -12,11 +12,13 @@ import java.io.IOException;
 import java.security.Key;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Timer;
 
 
 public class Arena {
     private int width,height;
-    private int SCORE = 0;
+    private int SCORE = 0; //Iniciar sempre o Score a zero quando o jogo começa
+    private Timer tempo; //Temporizador das maçãs com poderes
     public static final int TICKS_PER_SECOND = 10;
     private Apple apple;
     private LinkedList<Boxes> boxes = new LinkedList<Boxes>();
@@ -37,6 +39,7 @@ public class Arena {
         graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(width,height), ' ');
         snake.draw(graphics,snake.getColor());
         apple.draw(graphics, apple.getColor());
+
         for(Boxes b: boxes){b.draw(graphics,null);}
 
         for (int j=0; j<24; j++) {

@@ -18,7 +18,6 @@ public abstract class  Element {
     }
     abstract void draw(TextGraphics textGraphics,String color);
 
-
     private Position position;
 
 }

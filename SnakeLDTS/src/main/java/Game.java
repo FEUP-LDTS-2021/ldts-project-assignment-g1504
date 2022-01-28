@@ -38,33 +38,34 @@ public class Game {
                     snake.setDirection(Direction.UP);
                     break;
                 }
+
                 case ArrowDown: {
                     snake.setDirection(Direction.DOWN);
                     break;
                 }
+
                 case ArrowLeft: {
                     snake.setDirection(Direction.LEFT);
                     break;
                 }
+
                 case ArrowRight: {
                     snake.setDirection(Direction.RIGHT);
                     break;
                 }
-
             }
         }
     }
 
     private boolean validKey(KeyStroke key){
-        if(key.getKeyType() == KeyType.ArrowUp && snake.getDirection() == Direction.DOWN){
-            return false;
-        }else if(key.getKeyType() == KeyType.ArrowDown && snake.getDirection() == Direction.UP){
-            return false;
-        }else if(key.getKeyType() == KeyType.ArrowLeft && snake.getDirection() == Direction.RIGHT){
-            return false;
-        }else if( key.getKeyType() == KeyType.ArrowRight && snake.getDirection() == Direction.LEFT){
-            return false;
-        }
+        if(key.getKeyType() == KeyType.ArrowUp && snake.getDirection() == Direction.DOWN){return false;}
+
+        else if(key.getKeyType() == KeyType.ArrowDown && snake.getDirection() == Direction.UP){return false;}
+
+        else if(key.getKeyType() == KeyType.ArrowLeft && snake.getDirection() == Direction.RIGHT){return false;}
+
+        else if(key.getKeyType() == KeyType.ArrowRight && snake.getDirection() == Direction.LEFT){return false;}
+
         return true;
     }
 
@@ -80,6 +81,7 @@ public class Game {
             tick();
             Thread.sleep(1000L / arena.getSnake().getSpeed());
         }
+
         GameOver menuOver = new GameOver();
         menuOver.paintGameOver(screen,arena.getSCORE());
         System.exit(0);

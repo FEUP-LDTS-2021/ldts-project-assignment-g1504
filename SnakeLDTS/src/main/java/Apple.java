@@ -24,9 +24,11 @@ public class Apple extends Element {
         if(power == Powers.SPEED){
             color = "#0224FF";
         }
+
         else if(power == Powers.STRENGTH){
             color = "#FF02DC";
         }
+
         else{
             color = "#FF0202";
         }

@@ -20,9 +20,7 @@ public class Snake {
         this.direction = direction;
         body = new LinkedList<Position>();
 
-        for(int i = 0; i < Snake_Initial_Size;i++){
-            body.add(new Position(x,y));
-        }
+        for(int i = 0; i < Snake_Initial_Size;i++){body.add(new Position(x,y));}
 
         this.direction = direction;
     }
@@ -75,7 +73,7 @@ public class Snake {
             //Acrescentar temporizador
         }
 
-        else{setSpeed(10);}
+        else {setSpeed(10);}
     }
 
     public Position whereTo(){
@@ -98,7 +96,6 @@ public class Snake {
             case RIGHT:
                 position = new Position(head.getX() + 1, head.getY());
                 break;
-
         }
         return position;
     }

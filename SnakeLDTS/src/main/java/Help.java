@@ -124,12 +124,14 @@ public class Help {
         tg.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         tg.setForegroundColor(TextColor.ANSI.WHITE);
         tg.putString( 37, 22, "(ENTER)");
-        tg.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
-        tg.putString( 41, 11, "Blue Apple increases the", SGR.BOLD);
-        tg.putString( 41, 12, "Snake speed.", SGR.BOLD);
 
-        tg.putString( 41, 13, "Pink Apple allows the snake", SGR.BOLD);
-        tg.putString(41,14,"to go against boxes.",SGR.BOLD);
+        tg.setForegroundColor(TextColor.ANSI.CYAN_BRIGHT);
+        tg.putString( 41, 11, "Blue Apple: increases the", SGR.BOLD);
+        tg.putString( 41, 12, "snake speed.", SGR.BOLD);
+
+        tg.setForegroundColor(TextColor.ANSI.MAGENTA_BRIGHT);
+        tg.putString( 41, 14, "Pink Apple: allows the snake", SGR.BOLD);
+        tg.putString(41,15,"to go against boxes.",SGR.BOLD);
 
         screen.refresh();
 
