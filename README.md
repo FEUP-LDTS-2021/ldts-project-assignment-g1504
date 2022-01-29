@@ -11,8 +11,7 @@
 • Guilherme Freire (up202004809@fe.up.pt).
 
 ![docs/MainMenu.png](docs/MainMenu.png)
-
-### TO BE IMPLEMENTED FEATURES:
+### IMPLEMENTED FEATURES:
 
 •	A cobra desloca-se de acordo com o input do utilizador;
 
@@ -24,11 +23,17 @@
 
 •	As maçãs aparecem em posições aleatórias;
 
+•	Possibilidade de mudar a cor da cobra;
+
+
+
+### TO BE IMPLEMENTED FEATURES:
+
 •	Possibilidade de ter 2 utilizadores, em simultâneo, um contra o outro;
 
 •	 Caso as duas cobras se cruzem, ambas perdem. Se o utilizador 1 for contra o utilizador 2, o jogador 1 perde;
 
-•	Possibilidade de mudar a cor da cobra;
+
 
 
 ## Design
