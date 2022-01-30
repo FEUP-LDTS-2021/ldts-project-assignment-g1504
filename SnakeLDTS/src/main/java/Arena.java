@@ -1,15 +1,9 @@
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
 
 
 import java.io.IOException;
-import java.security.Key;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Timer;
@@ -22,12 +16,16 @@ public class Arena {
     public static final int TICKS_PER_SECOND = 10;
     private Apple apple;
     private LinkedList<Boxes> boxes = new LinkedList<Boxes>();
-    private Snake snake;
+    private SnakeView snakeView;
+    private SnakeController snakeController;
+    private SnakeModel snakeModel;
 
-    public Arena(int width,int height, Snake snake){
+    public Arena(int width,int height, SnakeView snakeView,SnakeModel snakeModel, SnakeController snakeController){
         this.width = width;
         this.height = height;
-        this.snake = snake;
+        this.snakeView = snakeView;
+        this.snakeModel = snakeModel;
+        this.snakeController = snakeController;
         createApples();
         createBoxes();
     }
@@ -37,7 +35,7 @@ public class Arena {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.ANSI.BLACK_BRIGHT);
         graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(width,height), ' ');
-        snake.draw(graphics,snake.getColor());
+        snakeView.draw(graphics,snakeView.getColor());
         apple.draw(graphics, apple.getColor());
 
         for(Boxes b: boxes){b.draw(graphics,null);}
@@ -101,41 +99,47 @@ public class Arena {
             createBoxes();
         }
 
-        Position start = snake.getHead();
+        Position start = snakeView.getHead();
         for(Boxes p: boxes){
             if(start.equals(p.getPosition())){
-                if(snake.getPower() == Powers.STRENGTH){
+                if(snakeModel.getPower() == Powers.STRENGTH){
                     boxes.remove(p);
                     return false;
                 }
-                snake.kill();
+                snakeModel.kill();
                 return true;
             }
         }
 
-        Position snakeHead = snake.getHead();
+        Position snakeHead = snakeView.getHead();
 
-        for(int i = snake.getBody().size()-2; i > 0; i--){
-            if(snakeHead.equals(snake.getBody().get(i))){
-                snake.kill();
+        for(int i = snakeView.getBody().size()-2; i > 0; i--){
+            if(snakeHead.equals(snakeView.getBody().get(i))){
+                snakeModel.kill();
                 return true;
             }
         }
 
         if(snakeHead.getX() < 0 || snakeHead.getX() > width){
-            snake.kill();
+            snakeModel.kill();
             return true;
         }
 
         if(snakeHead.getY() < 0 || snakeHead.getY() > height-2){
-            snake.kill();
+            snakeModel.kill();
             return true;
         }
         return false;
     }
 
-    public Snake getSnake(){
-        return snake;
+    public SnakeView getSnakeView(){
+        return snakeView;
+    }
+    public SnakeModel getSnakeModel(){
+        return snakeModel;
+    }
+    public SnakeController getSnakeController(){
+        return snakeController;
     }
 
     private void createApples(){
@@ -153,11 +157,11 @@ public class Arena {
     }
 
     public void isAteApple() {
-        Position start = snake.getHead();
+        Position start = snakeView.getHead();
         if(start.equals(apple.getPosition())){
-            snake.getBody().add(snake.whereTo());
-            snake.setAte(true);
-            snake.setPower(apple.getPower());
+            snakeView.getBody().add(snakeController.whereTo());
+            snakeModel.setAte(true);
+            snakeModel.setPower(apple.getPower());
         }
     }
 
@@ -173,13 +177,13 @@ public class Arena {
     }
 
     private boolean checkCreatedBox(Boxes box) {
-        if (snake.getDirection() == Direction.LEFT && box.getX() == snake.getHead().getX() -1) {return false;}
+        if (snakeController.getDirection() == Direction.LEFT && box.getX() == snakeView.getHead().getX() -1) {return false;}
 
-        if (snake.getDirection() == Direction.RIGHT && box.getX() == snake.getHead().getX() +1) {return false;}
+        if (snakeController.getDirection() == Direction.RIGHT && box.getX() == snakeView.getHead().getX() +1) {return false;}
 
-        if (snake.getDirection() == Direction.UP && box.getY() == snake.getHead().getX() +1) {return false;}
+        if (snakeController.getDirection() == Direction.UP && box.getY() == snakeView.getHead().getX() +1) {return false;}
 
-        if (snake.getDirection() == Direction.DOWN && box.getX() == snake.getHead().getY() -1) {return false;}
+        if (snakeController.getDirection() == Direction.DOWN && box.getX() == snakeView.getHead().getY() -1) {return false;}
 
         return true;
     }
@@ -191,16 +195,16 @@ public class Arena {
     public int getSCORE() {return SCORE;}
 
     public void tick() throws IOException, InterruptedException {
-        snake.move();
+        snakeController.move();
         if(checkCollision()) return;
 
         isAteApple();
 
-        if(snake.getAte()){
+        if(snakeModel.getAte()){
             createApples();
             SCORE++;
         }
-        snake.setAte(false);
+        snakeModel.setAte(false);
 
     }
 

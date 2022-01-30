@@ -1,11 +1,6 @@
-import com.googlecode.lanterna.*;
-import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 
@@ -17,13 +12,17 @@ public class Game {
     private final static int GAME_SPEED_4 = 45;
     private final static int GAME_SPEED_5 = 35;
 
-    private Snake snake;
+    private SnakeView snakeView;
+    private SnakeModel snakeModel;
+    private SnakeController snakeController;
 
     public Game(Screen screen, String color){
         this.screen = screen;
-        snake = new Snake(30,15,Direction.RIGHT, color);
-        this.arena = new Arena(60,24,snake);
-        snake.setColor(color);
+        snakeView = new SnakeView(30,15);
+        snakeModel = new SnakeModel();
+        snakeController = new SnakeController(Direction.RIGHT,snakeView);
+        this.arena = new Arena(60,24,snakeView,snakeModel,snakeController);
+        snakeView.setColor(color);
     }
 
     private void processKey() throws IOException {
@@ -35,22 +34,22 @@ public class Game {
         if(validKey(key)) {
             switch (key.getKeyType()) {
                 case ArrowUp : {
-                    snake.setDirection(Direction.UP);
+                    snakeController.setDirection(Direction.UP);
                     break;
                 }
 
                 case ArrowDown: {
-                    snake.setDirection(Direction.DOWN);
+                    snakeController.setDirection(Direction.DOWN);
                     break;
                 }
 
                 case ArrowLeft: {
-                    snake.setDirection(Direction.LEFT);
+                    snakeController.setDirection(Direction.LEFT);
                     break;
                 }
 
                 case ArrowRight: {
-                    snake.setDirection(Direction.RIGHT);
+                    snakeController.setDirection(Direction.RIGHT);
                     break;
                 }
             }
@@ -58,13 +57,13 @@ public class Game {
     }
 
     private boolean validKey(KeyStroke key){
-        if(key.getKeyType() == KeyType.ArrowUp && snake.getDirection() == Direction.DOWN){return false;}
+        if(key.getKeyType() == KeyType.ArrowUp && snakeController.getDirection() == Direction.DOWN){return false;}
 
-        else if(key.getKeyType() == KeyType.ArrowDown && snake.getDirection() == Direction.UP){return false;}
+        else if(key.getKeyType() == KeyType.ArrowDown && snakeController.getDirection() == Direction.UP){return false;}
 
-        else if(key.getKeyType() == KeyType.ArrowLeft && snake.getDirection() == Direction.RIGHT){return false;}
+        else if(key.getKeyType() == KeyType.ArrowLeft && snakeController.getDirection() == Direction.RIGHT){return false;}
 
-        else if(key.getKeyType() == KeyType.ArrowRight && snake.getDirection() == Direction.LEFT){return false;}
+        else if(key.getKeyType() == KeyType.ArrowRight && snakeController.getDirection() == Direction.LEFT){return false;}
 
         return true;
     }
@@ -77,9 +76,9 @@ public class Game {
     }
 
     private void beginTicks() throws IOException, InterruptedException {
-        while (arena.getSnake().isSnakeAlive()) {
+        while (arena.getSnakeModel().isSnakeAlive()) {
             tick();
-            Thread.sleep(1000L / arena.getSnake().getSpeed());
+            Thread.sleep(1000L / arena.getSnakeModel().getSpeed());
         }
 
         GameOver menuOver = new GameOver();
