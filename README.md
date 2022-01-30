@@ -11,6 +11,8 @@
 • Guilherme Freire (up202004809@fe.up.pt).
 
 ![docs/MainMenu.png](docs/MainMenu.png)
+![docs/CustomMenu.png](docs/CustomMenu.png)
+![docs/InGame.png](docs/InGame.png)
 ### IMPLEMENTED FEATURES:
 
 •	A cobra desloca-se de acordo com o input do utilizador;
@@ -45,7 +47,7 @@
 
 **Solução**
 
- Planeamos usar o **"MVC Pattern"**. Este desing pattern consiste em subdividir o código em três grandes partes sendo estas:
+ Usamos o **"MVC Pattern"**. Este desing pattern consiste em subdividir o código em três grandes partes sendo estas:
 
 1. Model - representa os dados;
 2. View - dá display aos dados presentes em Model;
@@ -53,7 +55,8 @@
 
 **Implementation**
 
-(Por ser feito.)
+Com esta implementação temos o código dividido em três grandes blocos. Ao fazer esta divisão tornou-se mais fácil a leitura do código bem como a adição de novas features
+
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Problema**
@@ -66,12 +69,12 @@
 
 **Implementation**
 
-(Por ser feito.)
+
 
 
 ## KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
 
-(Dado o pouco volume de código presente, ainda não nos apercebemos de nenhum code smell.)
+
 
 
 ## TESTING
