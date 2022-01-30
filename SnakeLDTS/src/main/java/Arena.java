@@ -165,14 +165,14 @@ public class Arena {
         return apple;
     }
 
-    private LinkedList<Boxes> createBoxes(){
+    private LinkedList<Boxes> createBoxes() {
         Random random = new Random();
 
         for (int i = 0; i < 10; i++) {boxes.add(new Boxes(new Position (random.nextInt(width - 2) +1, random.nextInt(height - 2) + 1)));}
         return boxes;
     }
 
-    private boolean checkCreatedBox(Boxes box){
+    private boolean checkCreatedBox(Boxes box) {
         if (snake.getDirection() == Direction.LEFT && box.getX() == snake.getHead().getX() -1) {return false;}
 
         if (snake.getDirection() == Direction.RIGHT && box.getX() == snake.getHead().getX() +1) {return false;}
@@ -184,7 +184,7 @@ public class Arena {
         return true;
     }
 
-    public LinkedList<Boxes> getBoxes(){
+    public LinkedList<Boxes> getBoxes() {
         return boxes;
     }
 

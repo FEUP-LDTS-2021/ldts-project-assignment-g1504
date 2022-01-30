@@ -74,6 +74,7 @@ public class Menu {
         key = screen.readInput();
         processKey(key);
     }
+
     private void processKey(KeyStroke key) throws IOException, InterruptedException {
         switch (key.getCharacter()){
             case '2':

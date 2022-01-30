@@ -4,6 +4,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 
 import java.util.LinkedList;
+import java.util.Timer;
 
 public class Snake {
     private String color;
@@ -20,7 +21,7 @@ public class Snake {
         this.direction = direction;
         body = new LinkedList<Position>();
 
-        for(int i = 0; i < Snake_Initial_Size;i++){body.add(new Position(x,y));}
+        for(int i = 0; i < Snake_Initial_Size; i++) {body.add(new Position(x,y));}
 
         this.direction = direction;
     }
@@ -65,18 +66,18 @@ public class Snake {
     public int getSpeed(){return speed;}
     public void setSpeed(int speed){this.speed = speed;}
 
-    public void setPower(Powers power){
+    public void setPower(Powers power) {
         this.power = power;
 
         if(power == Powers.SPEED){
             setSpeed(20);
-            //Acrescentar temporizador
+            //Timer.
         }
 
         else {setSpeed(10);}
     }
 
-    public Position whereTo(){
+    public Position whereTo() {
         Position position = new Position(0,0);
         Position head = getHead();
 
@@ -130,13 +131,12 @@ public class Snake {
         body.addLast(head);
     }
 
-    public void draw(TextGraphics graphics,String color){
+    public void draw(TextGraphics graphics,String color) {
         Position head = getHead();
         graphics.setBackgroundColor(TextColor.Factory.fromString(color));
 
         for(Position p: body){
             if(p.equals(head)){graphics.setBackgroundColor(TextColor.ANSI.WHITE);}
-
             graphics.putString(new TerminalPosition(p.getX(), p.getY()), " ");
         }
     }
