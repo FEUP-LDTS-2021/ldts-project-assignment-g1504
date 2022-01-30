@@ -12,21 +12,18 @@ import java.util.Timer;
 
 public class ArenaView {
     private int width,height;
-     //Iniciar sempre o Score a zero quando o jogo começa
-    private Timer tempo; //Temporizador das maçãs com poderes
-    public static final int TICKS_PER_SECOND = 10;
 
     private ArenaModel arenaModel;
     private SnakeView snakeView;
-    private SnakeController snakeController;
 
 
-    public ArenaView(int width, int height, SnakeView snakeView, SnakeController snakeController,ArenaModel arenaModel){
+
+    public ArenaView(int width, int height, SnakeView snakeView,ArenaModel arenaModel){
         this.width = width;
         this.height = height;
         this.snakeView = snakeView;
 
-        this.snakeController = snakeController;
+
         this.arenaModel = arenaModel;
 
     }

@@ -23,7 +23,7 @@ public class Game {
         snakeController = new SnakeController(Direction.RIGHT,snakeView);
         this.arenaController = new ArenaController(snakeController);
         this.arenaModel = new ArenaModel(60,24,snakeModel,snakeView,snakeController);
-        this.arenaView = new ArenaView(60,24,snakeView,snakeController,arenaModel);
+        this.arenaView = new ArenaView(60,24,snakeView,arenaModel);
         snakeView.setColor(color);
     }
 
