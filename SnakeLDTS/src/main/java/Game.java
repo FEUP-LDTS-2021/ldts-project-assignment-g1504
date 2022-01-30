@@ -21,7 +21,9 @@ public class Game {
         snakeView = new SnakeView(30,15);
         snakeModel = new SnakeModel();
         snakeController = new SnakeController(Direction.RIGHT,snakeView);
-        this.arena = new Arena(60,24,snakeView,snakeModel,snakeController);
+        this.arenaController = new ArenaController(snakeController);
+        this.arenaModel = new ArenaModel(60,24,snakeModel,snakeView,snakeController);
+        this.arenaView = new ArenaView(60,24,snakeView,snakeController,arenaModel);
         snakeView.setColor(color);
     }
 
@@ -70,44 +72,31 @@ public class Game {
 
     private void tick() throws IOException, InterruptedException {
         processKey();
-        arena.tick();
+        arenaModel.tick();
         screen.clear();
-        arena.paintArena(screen);
+        arenaView.paintArena(screen);
     }
 
     private void beginTicks() throws IOException, InterruptedException {
-        while (arena.getSnakeModel().isSnakeAlive()) {
+        while (arenaModel.getSnakeModel().isSnakeAlive()) {
             tick();
-            Thread.sleep(1000L / arena.getSnakeModel().getSpeed());
+            Thread.sleep(1000L / arenaModel.getSnakeModel().getSpeed());
         }
 
         GameOver menuOver = new GameOver();
-        menuOver.paintGameOver(screen,arena.getSCORE());
+        menuOver.paintGameOver(screen,arenaModel.getSCORE());
         System.exit(0);
     }
 
     public void  run() throws IOException, InterruptedException {
         beginTicks();
-        /*while(arena.getSnake().isSnakeAlive()){
-
-            KeyStroke key;
-            key = screen.readInput();
-            arena.processKey(key);
-            arena.paintArena(screen);
-            if(counter % GAME_SPEED_1 == 0){
-                arena.tick();
-            }
-
-
-            /*arena.paintArena(screen);
-            arena.getSnake().isAteApple(arena.getApples());
-            arena.checkCollision();
-        }*/
     }
 
-    public void setArena(Arena arena){
-        this.arena = arena;
+    public void setArenaView(ArenaView arena){
+        this.arenaView = arenaView;
     }
-    private Arena arena;
+    private ArenaView arenaView;
+    private ArenaController arenaController;
+    private ArenaModel arenaModel;
     private Screen screen;
 }

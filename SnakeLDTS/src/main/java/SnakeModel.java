@@ -14,6 +14,7 @@ public class SnakeModel {
 
     }
 
+
     public boolean isSnakeAlive(){
         return SnakeAlive;
     }
